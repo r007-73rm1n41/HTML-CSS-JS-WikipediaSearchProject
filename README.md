@@ -23,9 +23,6 @@ The "Wikipedia Viewer" project is a web application that allows users to search 
 - `app.js`: Contains the logic to handle search queries and make requests to the Wikipedia API.
   
 
-## 1. Project Overview
-
-This project is a simple web-based Wikipedia search viewer. It allows users to input a search term, retrieves results from the Wikipedia API, and displays clickable results with titles and snippets.
 
 ---
 
