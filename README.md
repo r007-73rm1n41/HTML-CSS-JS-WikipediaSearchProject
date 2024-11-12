@@ -1,4 +1,4 @@
-# Documentation for Wikipedia Search Project
+# Documentation for Wikipedia Viewer Project
 
 ## Overview
 
@@ -14,11 +14,20 @@ The "Wikipedia Viewer" project is a web application that allows users to search 
 6. Contribution
 7. License
 
+---
+
 ## 1. Project Structure
 
 - `index.html`: Contains the basic HTML structure of the search interface.
 - `styles.css`: Contains the styling for the webpage, including input boxes and result containers.
 - `app.js`: Contains the logic to handle search queries and make requests to the Wikipedia API.
+  
+
+## 1. Project Overview
+
+This project is a simple web-based Wikipedia search viewer. It allows users to input a search term, retrieves results from the Wikipedia API, and displays clickable results with titles and snippets.
+
+---
 
 ## 2. HTML Structure
 
@@ -42,7 +51,7 @@ Headings: Displays the title of the webpage.
     Wikipedia Viewer
 </h1>
 
-Scripts and Stylesheets: Links to external stylesheet and jQuery library, along with the JavaScript file.
+Scripts and Stylesheets: Links to external stylesheet, jQuery library, and JavaScript file.
 
 <link rel="stylesheet" type="text/css" href="styles.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -52,7 +61,7 @@ Scripts and Stylesheets: Links to external stylesheet and jQuery library, along 
 
 ---
 
-## 3. CSS Styling
+3. CSS Styling
 
 Key Styles:
 
@@ -101,40 +110,46 @@ Search Results Styling: Styles the display and hover behavior for search results
     color: black;
 }
 
-## 4. JavaScript Functionality
+
+
+---
+
+4. JavaScript Functionality
 
 Key Features:
 
 Search on Enter Key: Initiates a search request to the Wikipedia API when the Enter key is pressed.
 
-$(document).keypress(function (e) {
-    if (e.which == 13) {
-        let webLink = "...api.php?action=query&list=search&srsearch=" +
-            document.getElementById("search").value +
-            "&utf8=&format=json";
-        $.ajax({
-            url: webLink,
-            dataType: "jsonp",
-            success: function (data) {
-                $("div").remove(".searchResult");
-                for (i = 0; i < data.query.search.length; i++) {
-                    let titleForResult = data.query.search[i].title;
-                    let snippetForResult = data.query.search[i].snippet;
-                    $("#searchBox").append(
-                        '<a href="https://example.com/' +
-                        titleForResult +
-                        `" target="_blank" style="text-decoration:none">
-                            <div class="searchResult">
-                            <span class="searchTitle">` +
-                        titleForResult +
-                        "</span><span><br />" +
-                        snippetForResult +
-                        "</span></div></a>"
-                    );
-                }
-            },
-        });
-    }
+$(document).ready(function () {
+    $(document).keypress(function (e) {
+        if (e.which == 13) {
+            let webLink = "...api.php?action=query&list=search&srsearch=" +
+                document.getElementById("search").value +
+                "&utf8=&format=json";
+            $.ajax({
+                url: webLink,
+                dataType: "jsonp",
+                success: function (data) {
+                    $("div").remove(".searchResult");
+                    for (i = 0; i < data.query.search.length; i++) {
+                        let titleForResult = data.query.search[i].title;
+                        let snippetForResult = data.query.search[i].snippet;
+                        $("#searchBox").append(
+                            '<a href="https://example.com/' +
+                            titleForResult +
+                            `" target="_blank" style="text-decoration:none">
+                                <div class="searchResult">
+                                <span class="searchTitle">` +
+                            titleForResult +
+                            "</span><span><br />" +
+                            snippetForResult +
+                            "</span></div></a>"
+                        );
+                    }
+                },
+            });
+        }
+    });
 });
 
 AJAX Request: Makes an asynchronous request to the Wikipedia API and retrieves results based on the user's input.
@@ -150,7 +165,11 @@ $.ajax({
     },
 });
 
-## 5. How to Use
+
+
+---
+
+5. How to Use
 
 1. Open the webpage.
 
@@ -164,23 +183,33 @@ $.ajax({
 4. Click on a result to be redirected to the corresponding page.
 
 
-## 6. Contribution
+
+
+---
+
+6. Contribution
 
 If you wish to contribute to this project, feel free to:
 
-Fork the repository.
+1. Fork the repository.
 
-Create a new branch (git checkout -b feature-branch).
 
-Commit your changes (git commit -m "Description of changes").
+2. Create a new branch (git checkout -b feature-branch).
 
-Push to the branch (git push origin feature-branch).
 
-Create a pull request for review.
+3. Commit your changes (git commit -m "Description of changes").
 
-## 7. License
+
+4. Push to the branch (git push origin feature-branch).
+
+
+5. Create a pull request for review.
+
+
+
+
+---
+
+7. License
 
 This project is open-source and available under the MIT License.
-
-Now, you can copy and paste this documentation directly into your `README.md` file or any documentation file for easy reference.
-
