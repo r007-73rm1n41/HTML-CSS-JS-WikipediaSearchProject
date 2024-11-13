@@ -1,4 +1,4 @@
-# Documentation for Wikipedia Viewer Project
+# Documentation for Wikipedia Search Project
 
 ## Overview
 
